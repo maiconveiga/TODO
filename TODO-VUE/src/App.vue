@@ -32,13 +32,13 @@ const getTarefasFiltradas = () =>{
   } 
 }
 
-const cadastraTarefa = (e) =>{
-  e.preventDefault();
+const cadastraTarefa = () =>{
   const tarefaNova = {
     titulo: estado.tarefaTemp,
     finalizada: false,
   }
   estado.tarefas.push(tarefaNova);
+  estado.tarefaTemp = '';
 }
 </script>
 
@@ -50,10 +50,10 @@ const cadastraTarefa = (e) =>{
         Você possui {{ getTarefasPendentes().length }} tarefas pendentes
       </p>
     </header>
-    <form @submit="cadastraTarefa">
+    <form @submit.prevent="cadastraTarefa">
       <div class="row">
         <div class="col">
-          <input @change="evento => estado.tarefaTemp = evento.target.value" required type="text" name="" id="" placeholder="Descrição da tarefa" class="form-control">
+          <input :value="estado.tarefaTemp" @change="evento => estado.tarefaTemp = evento.target.value" required type="text" name="" id="" placeholder="Descrição da tarefa" class="form-control">
         </div>
         <div class="col-md-2">
           <button class="btn btn-primary" type="submit">Cadastrar</button>
