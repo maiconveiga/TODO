@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metasys Performance Verification Tool (PVT) User Guide</title>
+</head>
+<body>
+    <h1>Metasys Performance Verification Tool (PVT) User Guide</h1>
+    <h2>Table of contents</h2>
+    <ul>
+        <li>1. Introduction</li>
+        <li>2. Summary of changes</li>
+        <li>3. PVT hardware and software requirements</li>
+        <li>4. Installing PVT</li>
+        <li>5. Licensing PVT</li>
+        <li>6. Metasys Performance Verification Tool Cloud Dashboard</li>
+        <li>7. Using PVT in Autoscan mode in the PVT client</li>
+        <li>8. Using PVT in interactive mode in the PVT client</li>
+        <li>9. Type of scans</li>
+        <li>10. Inventory data</li>
+        <li>11. Performance data</li>
+        <li>12. Feature Assessment data</li>
+        <li>13. PVT Sync Service</li>
+        <li>14. Bus diagnostics data points</li>
+        <li>15. Troubleshooting PVT</li>
+        <li>16. Product warranty</li>
+        <li>17. Software terms</li>
+        <li>18. Contact information</li>
+    </ul>
+    <h2>Introduction</h2>
+    <p>This document contains a high-level overview of the Performance Verification Tool (PVT) and detailed quick reference information for field personnel. You can use PVT in the following modes:</p>
+    <ul>
+        <li>Autoscan mode</li>
+        <li>Interactive mode</li>
+    </ul>
+    <h2>Summary of changes</h2>
+    <p>The following information is new or revised for PVT Release 4.5:</p>
+    <ul>
+        <li>Updated Metasys Performance Verification Tool Cloud Dashboard to include enhancements and new features in the Cloud Dashboard.</li>
+        <li>Added a new section, Creating a site from the Metasys PVT Cloud Dashboard.</li>
+        <li>Added a new section, Configuring Metasys server and engine Logs settings from the Cloud Dashboard.</li>
+        <li>Updated Entering site configuration and scheduled scan data to document changes in the procedure and to include a note regarding a separate scheduler for Metasys server and engine logs.</li>
+        <li>Updated Creating a new site to document changes in the procedure.</li>
+        <li>Added a new section, Retrieving Metasys server and engine logs.</li>
+        <li>Added a new section, Mapping physical locations.</li>
+        <li>Updated PVT hardware and software requirements.</li>
+        <li>Added a new section, Setting up the EU Cloud Dashboard.</li>
+        <li>Updated Installing PVT, to include the European PVT Cloud Dashboard URL.</li>
+        <li>Updated PVT user interface to include the updated PVT user interface in Autoscan mode.</li>
+    </ul>
+    <h2>PVT hardware and software requirements</h2>
+    <p>To install PVT successfully, we recommend the following hardware and software configurations:</p>
+    <ul>
+        <li>Desktop operating systems: Windows® 11 Pro and Windows® 11 Enterprise Editions (version 22H2, 23H2) (64-bit), Windows® 10 Pro and Windows 10 Enterprise Editions versions 22H2 (64-bit)</li>
+        <li>Server operating systems: Windows Server® 2022, Windows Server® 2019 (version 1809 or later) (64-bit)</li>
+        <li>Connectivity: Internet connectivity of 5 Mbps or greater to sync PVT scans to cloud without interruption (Autoscan mode)</li>
+        <li>Configuration: <15 Engines: 8 GB RAM, 15-25 Engines: 16 GB RAM, 25 or more engines: 32 GB RAM</li>
+        <li>100 GB disk space</li>
+        <li>Microsoft .Net 4.7.2 or later</li>
+        <li>Microsoft Office® 2010 or later</li>
+        <li>Microsoft Visio® 2013 or later for exporting Riser view</li>
+    </ul>
+    <h2>Installing PVT</h2>
+    <p>Before you begin, verify that you have the following information: A Johnson Controls Global ID, a connection to the internet, and a supported machine. Administrator permissions. If you do not have administrator permissions, an error appears. Contact your local IT department to receive the appropriate permissions.</p>
+    <h2>Licensing PVT</h2>
+    <p>Depending on your license in the Software Manager, PVT runs in either automatic scan mode or interactive mode.</p>
+    <h2>Metasys Performance Verification Tool Cloud Dashboard</h2>
+    <p>For information about how to sign up and log on to the Cloud Dashboard, refer to Signing up for the Metasys Performance Verification Tool Cloud Dashboard. You can use the Metasys PVT Cloud Dashboard to complete the following tasks:</p>
+    <ul>
+        <li>Use the Map Physical Locations tab from the Site Settings menu to perform one to one or one to many mapping of sites or devices with NxGen or Service Max sites.</li>
+        <li>Sync scans to a separate EU Cloud Dashboard based on configuration that you can set from the Client application.</li>
+        <li>Create a site.</li>
+        <li>Configure Metasys Server log levels from Site Settings and download server and engine logs at site level based on upload date and time.</li>
+        <li>View Metasys Server and engine logs of the site under a separate tab on the Cloud Dashboard.</li>
+        <li>Configure a site on the Cloud Dashboard with Autoscan mode.</li>
+        <li>Modify scheduler and supervisory settings from Site Settings.</li>
+        <li>View site timeline over a period of time from Site Settings to view site progress related to Inventory data, server information, critical issues, site parameters, and status.</li>
+        <li>Use the enhanced Scan Results excel export to view Server Details and Latest Available Firmware details for supervisory engines.</li>
+        <li>Use the Site Assessment report to view Supervisory CPU and Board temperature limitation rules based on different engine series captured from the scan.</li>
+        <li>View different times zones for scans on the View Scan List page.</li>
+        <li>Sync existing PVT site with a ServiceMax ID, Work Order Number, or search site.</li>
+        <li>Chat through Microsoft Teams embedded in the Dashboard at site level.</li>
+        <li>Reprocess existing scans with updated Inventory, Performance, or Preference rules.</li>
+        <li>View the latest available firmware for scanned controllers as part of continuous updates of Inventory rules.</li>
+        <li>View the Estimated versus Actual duration of a scan.</li>
+        <li>View Fault data captured from the PVT client with a Metasys User account with rights to Metasys API.</li>
+        <li>Configure PVT log levels from the dashboard for an Autoscan site and upload the logs for PVT to the dashboard to scan.</li>
+        <li>Use the View Sites page to search for sites based on Name, Branch, Branch number, address, Country, Project Name, Technician, PVT Site Name, NxGen Site Name, Service Max Site Name, Metasys Version, and SCT Version.</li>
+        <li>Export PVT reports to Microsoft® Excel.</li>
+        <li>Download the OpenBlue Site Assessment Report.</li>
+        <li>Edit site details such as site name, address, city, state, zip code, country, and branch.</li>
+        <li>View history of changes done by a user within the site.</li>
+        <li>View Bus health and BACnet protocol diagnostic data in the scan results excel export.</li>
+        <li>Use the Resource Library to access the User Guide, view the history of PVT releases, and navigate to the License Portal.</li>
+        <li>Access Inventory data and Feature Assessment data reports.</li>
+        <li>Generate customer facing pdf reports.</li>
+        <li>Add and remove favorites from the Cloud Dashboard.</li>
+        <li>Upload PVT and DBexport files to the cloud.</li>
+        <li>Download .pvt files from the cloud.</li>
+        <li>Measure MUI adoption, within a margin of error, for a given site.</li>
+    </ul>
+    <h2>Using PVT in Autoscan mode in the PVT client</h2>
+    <p>Use the Autoscan mode in the PVT client to schedule scans to automatically occur at a defined interval. The data is uploaded to the PVT cloud and is available to view through PVT Dashboard reports.</p>
+    <h2>Using PVT in interactive mode in the PVT client</h2>
+    <p>In PVT interactive mode, you cannot configure automated scans. The interactive mode contains the full functionality of PVT that was introduced at version 3.1, including creating scans, generating reports, saving a scan in a PVT file, and viewing and exporting scan data.</p>
+    <h2>Type of scans</h2>
+    <p>The following table explains the different types of scans:</p>
+    <ul>
+        <li>Inventory</li>
+        <li>Performance</li>
+        <li>Feature Assessment</li>
+    </ul>
+    <h2>Inventory data</h2>
+    <p>The following information is gathered from Metasys during an Inventory scan:</p>
+    <ul>
+        <li>Summary</li>
+        <li>Server Information</li>
+        <li>Scanned Information</li>
+        <li>Supervisory Devices</li>
+        <li>Controllers</li>
+        <li>Points</li>
+        <li>Server Details</li>
+    </ul>
+    <h2>Performance data</h2>
+    <p>The following information is gathered during a performance scan:</p>
+    <ul>
+        <li>Performance and Savings</li>
+        <li>Maintenance and Reliability</li>
+        <li>Comfort and Health</li>
+        <li>Security and Standards</li>
+    </ul>
+    <h2>Feature Assessment data</h2>
+    <p>Feature Assessment searches for the use of the following Metasys features:</p>
+    <ul>
+        <li>Metasys UI</li>
+        <li>Solar Clock</li>
+        <li>User Views</li>
+        <li>Tailored Summaries</li>
+        <li>Optimal Start</li>
+        <li>Demand Limiting/Load Rolling (DLLR)</li>
+    </ul>
+    <h2>PVT Sync Service</h2>
+    <p>The PVT Sync Service installs with PVT and runs in the background to sync your PVT data to the cloud. The service can run in Autoscan mode or Interactive mode. The service requires an active internet connection and only performs the synchronization after you close PVT.</p>
+    <h2>Bus diagnostics data points</h2>
+    <p>The following data points related to bus diagnostics are captured by PVT and display in the PVT dashboard, not the PVT client:</p>
+    <ul>
+        <li>Bus health index</li>
+        <li>Bus performance Index</li>
+        <li>Execution time</li>
+        <li>Framing Errors</li>
+        <li>Overrun Errors</li>
+        <li>Header CRC Errors</li>
+        <li>Data CRC Errors</li>
+        <li>Reply Too Slow</li>
+        <li>Datalink Errors</li>
+        <li>Reply Too Slow Application Errors</li>
+        <li>Internal Errors</li>
+        <li>Buffer Overflows</li>
+        <li>Lost Token Retries</li>
+        <li>Max Output Queue Used</li>
+        <li>Local Abort Tx</li>
+        <li>Seg Retries Tx</li>
+        <li>Reg Retries Tx</li>
+        <li>Tx Record Count</li>
+        <li>Rcv Record Count</li>
+        <li>Record Count Tx</li>
+        <li>Messages Discarded</li>
+        <li>Rcv Messages Discarded</li>
+        <li>Allocate Record Count</li>
+        <li>Pending Queue Count</li>
+        <li>Peak Pending Queue Count</li>
+        <li>Unknown Queue Count</li>
+        <li>Peak Unknown Queue Count</li>
+        <li>Rcv Message Rate</li>
+        <li>Transmits Per Minute</li>
+        <li>Transactions Timeouts</li>
+        <li>Net Messages Tx</li>
+        <li>Net Messages Rcv</li>
+        <li>Net Unknown Routes</li>
+        <li>Net Rejects Rcv</li>
+        <li>Net Routes Busy</li>
+        <li>Net Unknown Msg Rcv</li>
+        <li>Net Routed Messages</li>
+    </ul>
+    <h2>Troubleshooting PVT</h2>
+    <p>The following table includes general troubleshooting information:</p>
+    <ul>
+        <li>An error occurred while using PVT.</li>
+        <li>When generating a Riser diagram, the following error occurs: An error occurred in the creation of the Visio document.</li>
+        <li>When you log on to the server machine to complete changes in Site Configuration which was originally completed by another user, you error: Access to path C:\\ProgramData\\Johnson Controls\\Metasys Performance Verification Tool\\ServerCreds.bin not possible to make site configuration changes.</li>
+        <li>The PVT installation fails and the following error appears in the pvt-error.log file: Error 1920. Service 'PVT Sync Service' (PVT failed to start. Verify that you have sufficient privileges to start system services.</li>
+        <li>Scan does not start, and the following error appears in the pvt-WindowsService-Error.log file: ERROR PvtSyncWinSvc System.Security.Authentication.AuthenticationException: Invalid Credentials System.Security.Authentication.AuthenticationException: Invalid Credentials at JohnsonControls.Tools.Metasys.ScanEngine.Providers.Authentication.MmdaAuthenticationProvider.Authenticat credentials, Boolean isSctArchive)at JohnsonControls.Tools.Metasys.ScanEngine.Providers.Authentication.OnlineAuthenticationProvider.Authentic JohnsonControls.Tools.Metasys.ScanEngine.Service.AuthenticationService.Authenticate()at JohnsonControls.Tools.Metasys.ScanEngine.Service.PvtScanService.<AuthenticateAsync>b__21_0()at System.Threading.Tasks.Task`1.InnerInvoke()at System.Threading.Tasks.Task.Execute()</li>
+        <li>An error occurs while you install PVT.</li>
+        <li>You receive the following error when you install PVT: In autoscan mode, PVT requires an internet connection for config setup.</li>
+        <li>PVT installation fails.</li>
+    </ul>
+    <h2>Product warranty</h2>
+    <p>This product is covered by a limited warranty, details of which can be found at www.johnsoncontrols.com/buildingswarranty.</p>
+    <h2>Software terms</h2>
+    <p>Use of the software that is in (or constitutes) this product, or access to the cloud, or hosted services applicable to this product, if any, is subject to applicable end-user license, open-source software information, and other terms set forth at www.johnsoncontrols.com/techterms. Your use of this product constitutes an agreement to such terms.</p>
+    <h2>Contact information</h2>
+    <p>Contact your local branch office: www.johnsoncontrols.com/locations</p>
+    <p>Contact Johnson Controls: www.johnsoncontrols.com/contact-us</p>
+    <p>Contact PVT support: mailto:pvt-support@jci.com</p>
+</body>
+</html>
