@@ -9,5 +9,1400 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    Page 1 of 33
+Metasys Performance Verification Tool (PVT) User
+Guide
+Table of contents
+1. Introduction
+1. Summary of changes
+2. PVT hardware and software requirements
+3. Installing PVT
+1. Licensing PVT
+1. Retrieving a Technician License for Interactive mode
+2. Retrieving a customer license for Autoscan mode
+3. Licensing for Fault Detection and Diagnostics (FDD) and API
+4. Creating a user who can access the Metasys REST API
+4. Metasys Performance Verification Tool Cloud Dashboard
+1. Signing up for the Metasys Performance Verification Tool Cloud Dashboard
+2. Metasys PVT Cloud Dashboard interactive view
+3. Creating a site from the Metasys PVT Cloud Dashboard
+4. Reprocessing scans from the Metasys PVT Cloud Dashboard
+5. Generating reports from the Metasys PVT Cloud Dashboard
+6. Editing Site Preferences
+7. Configuring PVT Logs Level settings from the Cloud Dashboard for a Metasys Site
+8. Configuring Metasys server and engine Logs settings from the Cloud Dashboard
+9. Mapping physical locations
+5. Using PVT in Autoscan mode in the PVT client
+1. Starting PVT
+2. Entering site configuration and scheduled scan data
+3. Setting up the EU Cloud Dashboard
+4. PVT user interface
+5. PVT rules
+6. Creating a new scan
+7. Viewing scan results
+8. Generating reports
+9. Exporting scan results, a tasking estimate, and a tasking list
+10. On-demand Scan
+11. Sync Status
+12. Retrieving Metasys server and engine logs
+6. Using PVT in interactive mode in the PVT client
+1. Starting PVT
+2. PVT user interface in interactive mode
+3. Creating a new site
+4. Editing a site
+5. Deleting a site
+6. Generating reports
+7. Saving a site as a PVT file
+8. Exporting scan results, a tasking estimate, and a tasking list
+9. Exporting the riser diagram
+10. Updating the scan
+7. Type of scans
+8. Inventory data
+9. Performance data
+10. Feature Assessment data
+11. PVT Sync Service
+12. Bus diagnostics data points
+13. Troubleshooting PVT
+14. Product warranty
+15. Software terms
+Page 2 of 33
+16. Contact information
+Introduction
+This document contains a high-level overview of the Performance Verification Tool (PVT) and detailed quick reference information
+for field personnel.
+You can use PVT in the following modes:
+Autoscan mode
+Autoscan mode is setup on a customer's Metasys Server machine. Configure PVT to automatically run scheduled scans. Unless
+the site uses a Split Server configuration, then PVT is configured for Autoscan on the SCT machine. PVT syncs the scan data to
+the cloud. The scan data is available in the PVT dashboard. You can also download reports from the cloud dashboard. The data
+that is retrieved from a PVT scan is used by OpenBlue Remote Diagnostics and Reporting (OB-RDR) deployments. If you install
+PVT as part of a OpenBlue Remote Diagnostics and Reporting (OB-RDR) deployment, you must configure PVT in Autoscan
+mode.
+Interactive mode
+Interactive mode is used by Johnson Controls technicians and is set up on Johnson Controls machines with a Technician
+license. You can create scans, generate reports, save a scan in a PVT file, and view and export scan data on an as-needed basis.
+Depending on your license, PVT starts in either Autoscan mode or interactive mode. See Licensing PVT.
+Use PVT for the following tasks:
+Scan supervisory devices and apply inventory and performance rules based on site preferences to raise awareness to potential
+issues.
+Identify the equipment and system controls.
+Determine the overall health of the Metasys system. See Table 1.
+Generate reports from the PVT Client or Cloud Dashboard.
+For more information about generating reports in interactive mode in the PVT Client, refer to Generating reports.
+For information about generating reports in the Cloud Dashboard, refer to Generating reports from the Metasys PVT
+Cloud Dashboard.
+PVT is supported in Metasys releases that include the following component versions:
+Engine Site Director: 8.0 or later
+ADS/ADX: 6.5 or later. Auto upload and dbexport requires 9.0.
+Open Application Server (OAS)
+Child engines: 5.0 or later
+Table 1. Overall system health
+Category Description
+Performance and savings opportunity This category measures the customer’s equipment controls and performance, and
+identifies opportunities for improvements that could lead to energy savings.
+Maintenance and reliability This category measures how well the hardware and network are maintained,
+highlights at-risk devices and trunks, and makes recommendations for improving
+the reliability of the building automation system (BAS).
+Comfort and health This category measures how accurately the BAS meets and maintains comfort
+and health requirements, and identifies equipment that frequently have variations
+between actual and setpoint.
+Security and standards This category measures the security of the BAS network, identifies any areas of
+potential risk, and makes recommendations on how to decrease the likelihood of
+a security threat.
+Feature assessment This category measures how the customer uses their Metasys system and
+features.
+It is best practice to validate all reports and PVT results before sharing with the customer.
+Summary of changes
+The following information is new or revised for PVT Release 4.5:
+Updated Metasys Performance Verification Tool Cloud Dashboard to include enhancements and new features in the Cloud
+Dashboard.
+Added a new section, Creating a site from the Metasys PVT Cloud Dashboard.
+Added a new section, Configuring Metasys server and engine Logs settings from the Cloud Dashboard.
+Note:
+Note:
+Page 3 of 33
+Updated Entering site configuration and scheduled scan data to document changes in the procedure and to include a note
+regarding a separate scheduler for Metasys server and engine logs.
+Updated Creating a new site to document changes in the procedure.
+Added a new section, Retrieving Metasys server and engine logs
+Added a new section, Mapping physical locations.
+Updated PVT hardware and software requirements.
+Added a new section, Setting up the EU Cloud Dashboard.
+Updated Installing PVT, to include the European PVT Cloud Dashboard URL.
+Updated PVT user interface to include the updated PVT user interface in Autoscan mode.
+PVT hardware and software requirements
+To install PVT successfully, we recommend the following hardware and software configurations:
+Desktop operating systems: Windows® 11 Pro and Windows® 11 Enterprise Editions (version 22H2, 23H2) (64-bit)
+Windows® 10 Pro and Windows 10 Enterprise Editions versions 22H2 (64-bit)
+Server operating systems: Windows Server® 2022
+Windows Server® 2019 (version 1809 or later) (64-bit)
+Connectivity
+Internet connectivity of 5 Mbps or greater to sync PVT scans to cloud without interruption (Autoscan mode)
+Configuration:
+<15 Engines: 8 GB RAM
+15-25 Engines: 16 GB RAM
+25 or more engines: 32 GB RAM
+If PVT is installed on a Metasys Server machine, ensure an additional 8 GB of RAM is available to run PVT,
+beyond the standard requirements for Server software.
+100 GB disk space Microsoft .Net 4.7.2 or later Microsoft Office® 2010 or later Microsoft Visio® 2013 or later for exporting Riser view
+Data Points in Autoscan mode
+When PVT is installed on a Metasys server, the following server machine data points are captured by PVT:
+Server Machine RAM usage
+Server Machine CPU usage
+USB port status
+OS version
+Hard drive free space
+Firewall status
+SQL version
+If the Software Manager and SQLite v3.27.2 do not exist on the computer, the PVT installer automatically installs them during
+PVT installation. You do not need to remove any other SQL Server version that is installed on the computer.
+If you install PVT on a server that runs ADS or ADX, the system requirements must match those outlined in Application and
+Data Server (ADS) and Extended Application and Data Server (ADX) Product Bulletin (LIT-1201525).
+PVT UI requires minimum resolution settings 1920 x 1080. For the best viewing experience, set size of text, apps and other
+items to 100%.
+Installing PVT
+Before you begin
+Before you install PVT, verify that you have the following information:
+A Johnson Controls Global ID, a connection to the internet, and a supported machine.
+Administrator permissions. If you do not have administrator permissions, an error appears. Contact your local IT department
+to receive the appropriate permissions.
+Note:
+Note:
+Important:PVT does not support the reading of scan data from any PVT release before 3.1. Release 2.0.3 is a special version
+of PVT that you can use to read scans taken with older versions of PVT and to generate reports. You must not use 2.0.3 to take
+Page 4 of 33
+Ensure that you close Software Manager before you install PVT.
+If you want to perform a custom installation on a drive other than C:\, ensure that you uninstall any previous version of
+PVT, and delete the Metasys Performance Verification Tool folder under both C:\Program Files (x86)\Johnson Controls and
+C:\ProgramData\Johnson Controls. You cannot perform a custom installation if you upgrade PVT directly.
+Check with customer or the IT department for anti-virus or anti-malware software that may be installed on your machine.
+Installation of PVT may fail due to certain software.
+Procedure
+Complete all or part of the following steps according to your installation or upgrade scenario:
+If you are installing PVT 4.5 for the first time, complete steps 5 to 8.
+If you are upgrading to PVT 4.5 from version 3.1 or from a previous 4.x version, complete steps 1, and 5 to 8.
+1. Ensure firewall (Outbound) port 443 is open in order for the tool to communicate with the cloud.
+If the machine on which PVT is being installed that does not receive automatic Windows system updates, additional
+configuration steps may be required for the cloud connection to operate. Please contact your local Field Support Center.
+2. Perform a backup of all the projects as follows:
+Export the projects created as .PVT files.
+Save synchronized projects from the following location: C:\Program Files (x86)\Johnson Controls\Metasys Performance
+Verification Tool\CreatedPVTs.
+3. Uninstall Metasys Performance Verification Tool from the computer.
+Do not cancel the uninstallation process or shut down your machine during the process to avoid malfunctioning of
+the application.
+4. When the uninstallation is complete, delete the Metasys Performance Verification Tool folder under C:\Program Files
+(x86)\Johnson Controls\ and C:\ProgramData\Johnson Controls.
+5. Check Microsoft Edge Enhanced Security configuration on the machine. Perform the following steps to ensure that the security
+settings do not restrict access to PVT.
+It is required to perform these steps in Edge even if the Windows machine uses a different browser as the primary,
+such as Chrome or Firefox. This will ensure that the installed PVT client functions as intended.
+It is best practice to perform these steps even if Enhanced Security is disabled. This prevent issues in the event that
+the setting is enabled at a later date, or customer network policies change in the future.
+For more information about enhanced security configuration, refer to the Microsoft documentation.
+a. Add the following sites to the Manage enhanced security for sites list:
+https://[*.]microsoft.com (login service)
+https://aadcdn.msauth.net (Azure cloud)
+https://login.microsoftonline.com (login service)
+https://jcib2c.b2clogin.com (login service)
+https://pvt.jci.com (PVT cloud)
+https://autologon.microsoftazuread-sso.com (login service)
+https://ocsp.digicert.com (Digicert certificate validation)
+https://ocsp.digicert.com (Digicert certificate validation)
+https://aadcdn.msauthimages.net (Azure cloud)
+https://pvtprod-eu-api.pvt-jci.com(Europe PVT Cloud Dashboard)
+https://device.login.microsoftonline.com (login service)
+6. Enable Javascript for the default browser of your local machine.
+For more information, refer to https://www.enable-javascript.com/.
+7. Navigate to the Johnson Controls License Portal, log on with your Johnson Controls credentials, download the installer for PVT
+4.5, extract the zip file, and run the executable file.
+8. Follow the installation wizard to complete the installation.
+To ensure a successful installation, do not shut down your machine or cancel the installation process when it has
+started.
+Custom installation on a drive other than C:\ was introduced at PVT 4.2. With this method, you can select any drive in your
+computer for the database location and installer file. To install PVT on a drive other than C:\, complete the following steps:
+a. When the installation wizard opens, click Custom.
+new scans of a site unless you need to perform a PMI scan, which is not supported in version 3.1 and above.
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Page 5 of 33
+b. On the next window, if you want to install PVT to a custom location, click Browse and select a location. The default
+filepath that displays is C:\Program Files (x86)\Johnson Controls.
+If you provide an invalid file path, you receive the error The users folder cannot be selected.
+9. Activate a valid license with the Software Manager. See Licensing PVT.
+To use the automated scans feature, the PVTAUTOSCAN 4.x license must be active.
+10. Run the application to verify the license is now activated.
+If you use PVT in Autoscan mode, see Using PVT in Autoscan mode in the PVT client. If you use PVT in interactive mode, see
+Using PVT in interactive mode in the PVT client.
+Licensing PVT
+Depending on your license in the Software Manager, PVT runs in either automatic scan mode or interactive mode.
+Retrieving a Technician License for Interactive mode
+About this task
+If you have a Technician License, PVT can only run in Interactive mode. To retrieve and activate a Technician License, complete the
+following steps:
+Procedure
+1. Navigate to the Johnson Controls License Portal and log on with your Johnson Controls user name and password.
+2. Under the My Tech Licenses tab, click the New Tech License button.
+3. Search and select the product for PVT.
+4. Accept the terms and conditions.
+When the system generates a request to create a Technician License, the first two requests are auto approved and
+any subsequent requests are sent to the employee's manager or direct supervisor for approval.
+5. When the License is approved, navigate to the My Tech Licenses tab and click the actions list.
+a. To retrieve the product key to use for license activation in online mode, click View Product Key and copy the product key
+from the pop up window.
+b. To download the file for offline license activation, select Start a New Offline Activation and provide the system ID of the
+machine, and click Next. Verify the machine tag and click Next. Download the file for offline activation.
+6. Navigate to the Software Manager and click Add License.
+7. In the pop up window, click Online with product key or Offline with a License Activation File.
+Retrieving a customer license for Autoscan mode
+About this task
+If the PVTAUTOSCAN 4.x license is active, PVT runs in Autoscan mode, even if another PVT license is also available.
+The machine that is running PVT must have an internet connection in order for PVT to open in Autoscan mode.
+To retrieve and activate your license for PVT for Autoscan mode, complete the following steps:
+Procedure
+1. Place an order for CW-PVT-0 so that a licensable copy of PVTAUTOSCAN 4.x can be generated through the license portal.
+2. Navigate to the Johnson Controls License Portal and log on with your Johnson Controls user name and password.
+3. Search for the order number in the search bar on the upper right and click on the order number.
+4. On the order information screen, locate the product code CW-PVT-0 and ensure that the version of the product is 4.2 or later.
+5. Click the Actions dropdown and choose a license activation method:
+a. To retrieve the product key to use for license activation in online mode, click View Product Key and copy the product key
+from the pop up window.
+b. To download the file for offline license activation, select Start a New Offline Activation and provide the system ID of the
+machine, and click Next. Verify the machine tag and click Next. Download the file for offline activation.
+6. Navigate to the Software Manager and click Add License.
+7. In the pop up window, click Online with product key or Offline with a License Activation File.
+Licensing for Fault Detection and Diagnostics (FDD) and API
+About this task
+Note:
+Note:
+Note:
+Note:
+Page 6 of 33
+FDD is a licensed add-on feature to the Metasys Server software products. This feature identifies building system-related faults and
+lists them in order of severity. It leverages Johnson Controls-defined rules and a semantic data model to ease configuration. To
+capture Fault data from Metasys UI with PVT, licenses are required for both Fault Detection and the Monitoring and Commanding
+API.
+Procedure
+1. Obtain the Fault Detection from the License Portal under the Software tab.
+2. To import the package files double-click on the package collection file or navigate to Start > Johnson Controls > Package
+Importer and select the package file. The Package Importer displays the message Finished importing device when the
+import is complete.
+3. Click Add License in the Software Manager to license FDD software. Choose an activation method: Online with a Product Key
+or Offline with a License Activation File. When added, the licenses appear in the License Inventory.
+Repeat these steps to license Monitoring and Commanding API, to capture fault data with PVT when you perform a
+scan as an API user.
+Creating a user who can access the Metasys REST API
+About this task
+When you set up Autoscans in the PVT client on a Metasys Server machine, it is best practice to use a dedicated Metasys user
+account for that purpose. In order to scan Fault data from PVT, you require a Metasys Rest API user type in Metasys UI. To create a
+user with Metasys Rest API access, complete the following steps:
+Procedure
+1. Log on to Metasys UI as an Administrator.
+2. Open User Management.
+3. In the default tab (Users), tap or click + USER. The Create New User window opens.
+On a smartphone, tap + to create a new user.
+4. Complete the fields in the Create New User window.
+5. Tap or click CREATE AND EDIT to create the user and further edit the user details
+If you use a MAC platform, double-click CREATE AND EDIT to save the details.
+6. In the User Details tab, select API from the Access Type drop-down menu.
+7. Tap or click SAVE
+8. Log out of Metasys UI.
+9. Log on to Metasys UI with the new Metasys Rest API user account and accept the terms and conditions.
+To capture Fault data in PVT its mandatory to log on as a Metasys Rest API user in Metasys UI and accept the terms
+and conditions.
+10. Log out of Metasys UI.
+You can edit the category access details in the Category Access tab in Metasys UI. Ensure the API user has View
+permission selected in order to perform a scan. For more information, refer to the Categories and permissions section in
+Metasys UI Help (LIT-12011953).
+Metasys Performance Verification Tool Cloud Dashboard
+For information about how to sign up and log on to the Cloud Dashboard, refer to Signing up for the Metasys Performance
+Verification Tool Cloud Dashboard.
+You can use the Metasys PVT Cloud Dashboard to complete the following tasks:
+Use the Map Physical Locations tab from the Site Settings menu to perform one to one or one to many mapping of sites or
+devices with NxGen or Service Max sites. For more information, refer to Mapping physical locations.
+PVT 4.5 and later client you can sync scans to a separate EU Cloud Dashboard based on configuration that you can set from
+the Client application. When you perform a scan from the PVT Client, it syncs the scan to respective cloud based on Country selection within
+the scan.
+If no country is selected, by default the scan syncs to the US Cloud Dashboard.
+You can access the EU Cloud Dashboard here.
+For more information, refer to Setting up the EU Cloud Dashboard.
+Create a site. Refer to Creating a site from the Metasys PVT Cloud Dashboard for more information.
+Note:
+Note:
+Note:
+Note:
+Note:
+Page 7 of 33
+From PVT 4.5, you can configure Metasys Server log levels from Site Settings and download server and engine logs at site
+level based on upload date and time. You can view Metasys Server and engine logs of the site under a separate tab on the
+Cloud Dashboard.
+In order to view engine logs, you must perform engine authentication in the PVT client application.
+You require PVT 4.5 Autoscan.
+From PVT 4.5 you can configure a site on the Cloud Dashboard with Autoscan mode. When you view a site on the Cloud
+Dashboard, you can modify scheduler and supervisory settings from Site Settings. Refer to Configuring Metasys server and
+engine Logs settings from the Cloud Dashboard for more information.
+You can modify site configuration from the Cloud Dashboard with Autoscan sites only. Modify the scheduler time and
+changes in supervisory selection and changes are picked up by the PVT client application in next instance of scheduled
+scan.
+View site timeline over a period of time from Site Settings to view site progress related to Inventory data, server information,
+critical issues, site parameters, and status.
+Use the enhanced Scan Results excel export to view Server Details and Latest Available Firmware details for supervisory
+engines.
+On the Inventory Analysis sub sheet under the Metasys Server Information, you can view server information related to
+Hard Drive free space, Firewall Status, USB Port status, and Server Machine CPU and RAM usage.
+On the Supervisory Devices, you can view the latest available firmware version for engines.
+Use the Site Assessment report to view Supervisory CPU and Board temperature limitation rules based on different engine
+series captured from the scan.
+View different times zones for scans on the View Scan List page.
+Sync existing PVT site with a ServiceMax ID, Work Order Number, or search site.
+Chat through Microsoft Teams embedded in the Dashboard at site level.
+Reprocess existing scans with updated Inventory, Performance, or Preference rules.
+The Cloud Dashboard identifies scans which are required to be reprocessed based on outdated Inventory, Performance,
+or Preference rules on the View Site page. You can also click Reprocess Scan from the Actions column. For more
+information, refer to Reprocessing scans from the Metasys PVT Cloud Dashboard.
+View the latest available firmware for scanned controllers as part of continuous updates of Inventory rules.
+View the Estimated versus Actual duration of a scan.
+The client shows total scan duration for the entire site or engines selected for scanning based on project type and
+displays the estimated scan duration for each engine based on current loading and response time.
+You can review the estimated versus actual duration of a scan in the Dashboard integrated Power BI report under
+Inventory data
+View Fault data captured from the PVT client with a Metasys User account with rights to Metasys API.
+The Dashboard provides an interactive separate Faults view where you can review the Fault data. For more information,
+refer to Metasys PVT Cloud Dashboard interactive view.
+Configure PVT log levels from the dashboard for an Autoscan site and upload the logs for PVT to the dashboard to scan.
+The log levels are basic, intermediate, and advanced, with an option to specify the number of scans to run at an elevated
+level before automatically reverting the scan level back to basic. When you configure and save the log settings, the client generates logs and uploads them to the dashboard. For more
+information, refer to Configuring PVT Logs Level settings from the Cloud Dashboard for a Metasys Site.
+Use the View Sites page to search for sites based on Name, Branch, Branch number, address, Country, Project Name,
+Technician, PVT Site Name, NxGen Site Name, Service Max Site Name, Metasys Version, and SCT Version.
+Export PVT reports to Microsoft® Excel. This includes Scan results, taking estimates, and tasking lists.
+Download the OpenBlue Site Assessment Report. The report highlights issues that can impact Open Blue site readiness and
+categorize issues as either critical or a warning and provides recommendations to resolve the issue. You can download the
+report in Word or Excel format.
+Edit site details such as site name, address, city, state, zip code, country, and branch.
+View history of changes done by a user within the site.
+View Bus health and BACnet protocol diagnostic data in the scan results excel export.
+Use the Resource Library to access the User Guide, view the history of PVT releases, and navigate to the License Portal.
+Access Inventory data and Feature Assessment data reports. Refer to Inventory data, Feature Assessment data, and
+Performance data for more information about this data.
+Generate customer facing pdf reports. You can generate Inventory data, Feature Assessment data, and Performance data
+reports.
+Add and remove favorites from the Cloud Dashboard. You can now save sites as favorites to find scans associated with sites
+that you visit frequently.
+Upload PVT and DBexport files to the cloud. Use this to manually upload PVT files, and DBexport files to the cloud repository in
+cases where a machine or site does not have access to the internet.
+Download .pvt files from the cloud. You can download a .pvt file to a local machine and generate customer facing reports by
+opening the scan in the PVT client.
+In autoscan mode, PVT supports backing up SCT archives (DBexport file only) to the cloud. This is only possible when SCT and
+PVT are installed on the same machine. Measure MUI adoption, within a margin of error, for a given site. This includes the following metrics:
+Count of spaces by type
+Number of equipment objects
+Number of points mapped to equipment objects
+Equipment to space ratio
+Ratio of controllers to equipment
+Page 8 of 33
+Count of graphics by type Metasys user login data
+The available metrics vary depending on which version of Metasys is installed at your site.
+In order for PVT to pull MUI metrics from your site, you must use a Metasys user account that is assigned to the
+Access Type called API Access. For more information, refer to Creating a user who can access the Metasys REST API.
+When you sign up for the Dashboard, you can choose only the Technician role. The Technician role has access only to the site of the
+branch that you select during the sign up process. You can request access to other branches in Account Settings.
+The SME role has access to all sites across a global region. If you require an SME role, send an email request to pvt-support@jci.com
+and copy your manager.
+The Account Representative role has access to all sites across a country. You can request an Account Representative role in Account
+Settings.
+Figure 1. Metasys Performance Verification Tool Cloud Dashboard
+Signing up for the Metasys Performance Verification Tool Cloud Dashboard
+Procedure
+1. Click SIGN UP.
+2. On the next window, fill in the required fields.
+3. Click CONTINUE to send an email to your line manager for approval.
+Results
+When your manager approves access, you can log on to the Cloud Dashboard with your Global ID and password.
+When you sign up to the Cloud Dashboard you can choose between Technician or Account Representative roles. The
+Technician role provides access only to scans associated with the branch you select during sign up. The Account Representative role
+provides access to all scans within the selected country. If you want a different role, such as SME, indicate that in the email to PVT
+support group to pvt-support@jci.com.
+Metasys PVT Cloud Dashboard interactive view
+The Cloud Dashboard provides an interactive view where you can review issues, alarms, inventory, bus diagnostics and BACnet
+protocol statistics.
+To access the interactive view, complete the following steps:
+1. From the menu, select View Sites.
+2. Search for your site and select View Site under the Actions menu.
+3. Search for your scan and click the scan date.
+The scan date and time displayed on the View Site page are specific to the browser time zone.
+The Dashboard opens an interactive view, where you can review the data captured in the scan.
+From PVT 4.4, a separate Faults view is available. You require Metasys Rest API user type in Metasys UI and a Fault Detection license
+to capture Fault data with PVT. For more information, refer to Licensing for Fault Detection and Diagnostics (FDD) and API and
+Creating a user who can access the Metasys REST API.
+Note:
+Note:
+Note:
+Page 9 of 33
+Figure 1. Fault Data
+Creating a site from the Metasys PVT Cloud Dashboard
+About this task
+If you wish to use PVT with Autoscan or Interactive mode, first create the site in the Cloud Dashboard in order to export the details
+in a site config file. To create a site from the Cloud Dashboard, complete the following steps:
+Procedure
+1. From the menu, click Create Site.
+2. On the next window, search for the site to check if it already exists in PVT to avoid site duplication. You can search by Site
+Name, Branch, Branch Number, Address and Country. If the site does not appear, select CONTINUE and proceed to step 3.
+a. If the site does appear, select the site in the search results to view the site in the PVT dashboard.
+i. Check to see if the site is syncd with NxGen.
+1. If the site is not syncd with NxGen, select Site Settings under Site Options.
+2. Select Sync Now to sync the site through the Site ID or Site Name and search for sites.
+3. When the site is found, select CONFIRM SITE.
+ii. If the site is synced with NxGen, proceed to step 8.
+3. On the next window, search for the site in NxGen or Service Max. You can search by Site Name, Site ID, Work Order number,
+Address, and Country. If the site does not appear, select CREATE SITE. If the site appeared in step 1, but does not appear in the
+NxGen or Service Max search, ensure you sync it with NxGen as outlined in step 2, then proceed to Step 8.
+4. On the next window, enter the the following data:
+a. Enter the name of the site in the Site Name field, and specify the full address of the site in the Address, City,
+State/Province, and Zip/Postal Code fields.
+b. Select the country where the site is located from the Filter Branch by Country list.
+c. Select the branch from the Branch list.
+d. Enter the Customer Name and System ID.
+5. Click CREATE SITE.
+6. When you receive the Do you want to Register a site based on the Inputs provided. Please select Yes
+to continue or No if you want to revisit the Inputs provided message, click YES to continue.
+7. When the Site Settings page appears, ensure the site details are correct.
+8. Click DOWNLOAD SITE CONFIG FILE to retrieve the latest data from the site config file and copy the Site Passphrase. The Site
+Passphrase is unique for a site and you must in the Site Passphrase along with the Site Config file to onboard the client
+Application in Autoscan mode or perform a manual scan in Interactive mode.
+Reprocessing scans from the Metasys PVT Cloud Dashboard
+About this task
+The Cloud Dashboard identifies scans which can be reprocessed based on outdated Inventory, Performance, or Preference rules on
+the View Site page. To reprocess a scan, complete the following steps:
+Procedure
+1. From the menu, select View Sites.
+2. Search for your site and select View Site under the Actions menu.
+3. Search for your scan and select Reprocess Scan from the Actions menu.
+4. On the Confirm Reprocessing of Scan window select the rules that you want to reprocess, and click APPLY AND REPROCESS.
+Figure 1. Confirm Reprocessing of Scan window
+Page 10 of 33
+Generating reports from the Metasys PVT Cloud Dashboard
+Procedure
+1. From the menu, select View Sites.
+2. Search for your site and select View Site under the Actions menu.
+3. Under the Actions menu on the next page, choose the report you want to download.
+Figure 1. Report options from the Actions menu in the Cloud Dashboard
+Editing Site Preferences
+Procedure
+1. From the menu, select View Sites.
+2. Search for your site and select View Site under the Actions menu.
+3. Search for your site and select Site Preferences under the Actions menu.
+Figure 1. Site preferences
+Page 11 of 33
+4. From the Site Preferences screen, you can edit point information, Equipment Type, and Rule preferences for your site.
+Configuring PVT Logs Level settings from the Cloud Dashboard for a Metasys
+Site
+About this task
+You can only configure PVT logs level settings from the PVT Cloud Dashboard for sites with PVT 4.4 or later in Autoscan mode.
+Procedure
+1. From the menu, select View Sites.
+2. Search for your site and select Site Settings under the Actions menu.
+3. Click the Logs Settings tab.
+4. From the Logs Settings tab, you can choose Basic, Intermediate, and Advanced with an option specify the number of scans to
+run at an elevated level before automatically reverting the scan level back to basic.
+Figure 1. Logs Settings
+Configuring Metasys server and engine Logs settings from the Cloud
+Dashboard
+About this task
+You can only configure Metasys server and engine logs settings from the PVT Cloud Dashboard for sites with PVT 4.5 or later in
+Autoscan mode.
+Procedure
+1. From the menu, select View Sites.
+2. Search for your site and select Site Settings under the Actions menu.
+3. Click the Metasys Server Logs Settings tab.
+4. From the Metasys Server Logs Settings tab, you can choose Basic, Intermediate, and Advanced with an option to specify the
+number of scans to run at an elevated level before automatically reverting the scan level back to basic.
+Mapping physical locations
+About this task
+From PVT 4.5, you can map a PVT Site with one to one mapping or one to many mapping with NxGen or Service Max sites. To map
+physical locations, complete the following steps:
+Procedure
+1. From the menu, select View Sites.
+2. Search for your site and select Site Settings under the Site Options menu.
+3. Click the Map Physical Locations tab.
+4. Under Devices, you can search for devices under ALL DEVICES, MAPPED, UNMAPPED, or use the Search Supervisory Device(s)
+field. You can search by Supervisory Device Name, MAC address, FQR, and physical location.
+Figure 1. Map Physical Locations tab
+Page 12 of 33
+5. Check Enable Multi Site Mapping in order to select individual devices and map to a physical location.
+If you do not check Enable Multi Site Mapping you must perform one to one mapping under the UNMAPPED
+devices.
+If you select Enable Multi Site Mapping, you cannot revert back to one to one mapping. If you do wish to revert back
+to one to one mapping, contact the PVT support team @pvt-support@jci.com.
+6. Select the devices you want to map and click Map Device(s).
+To remove all devices from a physical location use the Delink icon under Physical Locations.
+Figure 2. Delink site
+If you select a physical location as the primary physical location in Site Settings you cannot remove all devices until
+it is removed as primary the site and delinked.
+When you set a primary physical location, the Site demographic details are updated accordingly and disabled.
+When you perform any changes in Map physical location, the changes appear under the History tab in Site Settings.
+Using PVT in Autoscan mode in the PVT client
+Use the Autoscan mode in the PVT client to schedule scans to automatically occur at a defined interval. The data is uploaded to the
+PVT cloud and is available to view through PVT Dashboard reports. Autoscan mode is setup on a customer's Metasys Server
+machine.
+In the local installed PVT Client, you can perform on-demand scans, view and export scan data, generate scan reports, delete a scan,
+and compare scans.
+In autoscan mode, the following functions are not available: updating and editing scans, saving scans as a PVT file, and
+exporting a riser.
+Autoscan mode is only accessible to users with Johnson Controls credentials.
+After Autoscans are scheduled, opening PVT in Interactive Mode cancels an in-progress auto scan.
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Page 13 of 33
+There is no scan type in Autoscan mode. It scans Inventory, Performance and Feature Assessment data by default.
+Starting PVT
+1. Double-click the Metasys Performance Verification Tool desktop icon.
+2. If the PVT application prompts you to add sites as trusted sites or to enable JavaScript, do so based on your browser.
+3. Sign in with your global ID and password.
+You do not need to sign in for every sync; the credentials are required to access the application.
+4. When you start PVT for the first time, click I agree in the Terms of Service window.
+5. Enter site configuration and scheduled scan data, see Entering site configuration and scheduled scan data.
+After you enter the data or when you start PVT later, the PVT interface opens.
+6. If you want to activate the automatic scheduled scans, click Sign off to log off PVT or click the X icon to close PVT.
+The automated PVT scans run only when the PVT application is closed. If PVT is open at the scheduled time of a scan,
+the scheduled scan does not start. Do not open PVT until the scan is complete. See step 8.
+If you want to perform manual tasks, see PVT user interface for more information.
+PVT closes automatically after 30 minutes of inactivity.
+The PVT cloud identifies all scans from a single site and groups them based on a site correlation ID.
+7. After you close PVT, ensure that PVT sync Service is running in Task Manager > Services so the Autoscan runs when it is
+scheduled to.
+8. To ensure that the scan is complete, review the pvt-WindowsService-Info.log file in C:\ProgramData\Johnson
+Controls\Metasys Performance Verification Tool\logs and look for the message: 2023-xx-xx xx:xx:xx
+INFO|PvtSyncWinSvc|PVTAutoSyncJob event completed.|. This shows the Autoscan completed successfully and is
+synced to the cloud.
+Entering site configuration and scheduled scan data
+About this task
+When you start PVT for the first time, you must enter site configuration and schedule scan data. If you want to change these settings
+later, select Site Configuration from the menu.
+If Metasys Fault Detection (FDD) is licensed on the Metasys Server, you must create a separate user in Metasys UI to
+assign the API access type which you need to scan Fault data from PVT.
+To run scheduled scans, you must complete all six steps of the site configuration.
+From PVT 4.5, it is mandatory to import a site config file in order to perform an Autoscan. The Next button is disabled until
+the import is successful and the required fields are populated.
+Procedure
+1. In the Site Configuration screen, enter the following data:
+a. Enter your site passphrase and click Next.
+The import is unsucessful in the following scenarios:
+You did not download the site config file and passphrase. For instructions about how to retrieve a site config file,
+refer to Creating a site from the Metasys PVT Cloud Dashboard.
+The site config file and passphrase belong to a different site.
+Ensure the site details that populate the fields from the site config file are correct before you proceed with
+configuration.
+b. Click Import to import the site config file. For more information about how to generate a site config file, refer to Creating
+a site from the Metasys PVT Cloud Dashboard.
+c. From PVT 4.2 or later, you can set up the retrieval of scheduled backups of an SCT archive and sync the dbexport to the
+cloud dashboard. Under Do you want to set up Autoscan or SCT Archive (DBexport) backup? you can choose Autoscan
+Only, SCT Archive (DBexport) back up Only, Both, or None.
+When you choose SCT Archive (DBexport) back up Only, .dbexport files upload to the cloud, but .backup files
+do not.
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Note:
+Page 14 of 33
+You require SCT Pro 14.1 or later to use the SCT Archive (DBexport) back up Only option. PVT retrieves those
+files from the machine that PVT is installed on. Refer to How do I schedule a backup to run automatically? in SCT Pro
+Help (LIT-12013035) for details.
+d. Enter the Metasys server information in the IP (or Hostname) of Server, Metasys Server Username, and the Metasys
+Server Password fields.
+e. Click Next.
+Figure 1. Site Configuration screen
+2. The Supervisory Devices screen contains all the online and offline devices that are connected to the server. Click Next. You can
+select what engines to include or exclude from the scan.
+The next time a scan is set up, the list of engines are updated to reflect any new engines you add as a site expands.
+Figure 2. Supervisory Devices Screen
+a. Optional: From PVT 4.5 you can scan multiple site directors in a single PVT scan. To scan multiple site directors in an
+archive, log into SCT and select the archive you wish to scan. Enter the Metasys server information in the IP (or
+Hostname) of Server, Metasys Server Username, and the Metasys Server Password fields. Then select Autoscan Only.
+The other options are grayed out. You must also bulk authenticate engines in order to perform a multi site director scan.
+Figure 3. Bulk Authentication screen
+3. On the Site Multi Sync Schedule screen, select a daily, weekly, or monthly recurrence pattern for the automated scans, and
+specify the timing of the scan.
+From PVT 4.5, you can use a separate scheduler for Metasys server and engine logs.
+To configure the scan to run always on the last day of the month for monthly recurrence, enter 31 in the Recur on
+day field. If a month has less than 31 days, PVT triggers the schedule on the last of the month.
+Figure 4. Site Multi Sync Schedule
+Note:
+Note:
+Note:
+Note:
+Page 15 of 33
+From PVT 4.5, you can use Site Multi Sync Schedule option, to change the schedule without going through the
+configuration process again.
+Figure 5. Site Multi Sync Schedule in main PVT menu
+4. Click Save.
+The configuration saves and a green tick appears next to the Site Configuration item in the main menu.
+The automated PVT scans run only when the PVT application is closed. If PVT is open at the scheduled time of a scan,
+the scheduled scan does not start. Close the PVT application five minutes before the scheduled time to trigger the scan. You
+can check or track your scans from the PVT cloud dashboard.
+5. When you close PVT, ensure PVT Sync Service is running in task manager.
+Setting up the EU Cloud Dashboard
+Note:
+Note:
+Page 16 of 33
+From PVT Release 4.5 you can sync scans to a separate EU Cloud Dashboard. To configure scans to the EU Cloud Dashboard from
+the PVT Client application, complete the following steps:
+Procedure
+1. From the Menu, click Settings.
+2. From the Settings menu, click Select Country to identify PVT scan data Cloud Storage.
+If you do not select a country, the scans sync to the US PVT Cloud Dashboard.
+3. Select any of the following countries:
+Germany
+Netherlands
+Belgium
+Norway
+Austria
+Czech Republic
+Hungary
+Poland
+Switzerland
+Spain
+Italy
+France
+4. Click Save.
+Results
+Scans sync to the EU Cloud Dashboard here.
+PVT user interface
+The main PVT user interface in autoscan mode contains the following options: New Scan, Open Scan, and Compare Scans. Use the
+menu icon with three lines in the top-left corner of the interface to access these options and also the following options: Delete Scan,
+Compare scans, Site Configuration, Site Sync Schedule, Preferences, Settings, Help, and About.
+Figure 1. PVT user interface in Autoscan mode
+Table 1. PVT user interface options
+Option Description
+New Scan Open the New Scan interface to create a new scan.
+Open Scan Open an existing scheduled or on-demand scan from the local database or from a PVT
+file.
+You can open PVT files from PVT version 3.0 and above.
+Delete Scan Delete an existing scan from your local system.
+Compare Scans Compare two scans from different points in time to identify any changes in site data.
+Note:
+Note:
+Page 17 of 33
+Option Description
+Site Configuration Perform the steps to change the site configuration and the scheduled scan details.
+These are the same steps that you go through when you sign in to PVT Autoscan
+mode for the first time.
+Site Sync Schedule From PVT 4.2 or later, you can use this feature to change the schedule of a scan
+without going through the site configuration process again.
+Preferences Use preferences to specify user defined names for points and equipment.
+Tab Description
+Field Point Modify the point names search criteria for
+better point results.
+Instance Number Modify the instance number search
+criteria for better point results.
+Equipment Type Modify the equipment type names search
+criteria for better point results on
+equipment identification.
+Rule Preferences Trigger alerts when the performance rules
+run.
+Settings Modify language settings and work hours information. Enable or disable sync status. Modify rule preferences for scheduling, setpoints, filters, alarm events, user
+management, thermal waste, fan motor, and different modules of variation form set
+points.
+Help View PVT documentation in the browser.
+About Modify rule preferences for View version and license information for your PVT
+installation. Check the latest rule version synchronized from the cloud.
+PVT rules
+PVT rules are updated with every release of Metasys. When you upgrade PVT to 4.1 or later, rules are updated to comply with
+Metasys Release 12.0. PVT can highlight possible issues and suggest recommendations if the scan finds any non-compliance.
+The following types of rules are supported for PVT 4.1 or later:
+Table 1. PVT rules
+Rule Description
+Patch Identifies if any of the scanned engines are missing a critical patch.
+Latest Firmware Identifies if engines are running on latest available patch.
+Object Count Identifies if any engine is running beyond maximum capacity in terms of the specified
+object count limit.
+Controller Count Identifies if any engine is running beyond maximum capacity in terms of the specified
+controller count limit.
+Obsolete engine Identifies which engines are running an obsolete version of the operating system.
+JCI devices Identifies Johnson Controls devices and third party devices.
+Performance Identifies performance issues. For example, duplicate BACnet IDs assigned to multiple
+devices, or Fan motors running at maximum speed.
+Creating a new scan
+Procedure
+1. Click Create Scan in the toolbar or click New Scan in the main menu.
+2. Select the online supervisory devices that you want to scan, and click Scan Selected.
+From Release 4.4, PVT scans up to three engines simultaneously. Parallel scanning results in significantly lower scan
+duration times than previous versions of PVT.
+From Release 4.4, PVT shows total scan duration for the entire site or engines selected for scanning based on project
+type and displays the Estimated scan duration for each engine based on current loading and response time.
+Figure 1. New Scan window showing Estimated Scan Duration
+Note:
+Note:
+Page 18 of 33
+Viewing scan results
+Procedure
+1. To open a scan, click Open Scan in the toolbar or main menu, and select the scan you want to open. To open a recent scan, click
+on the card of a scan in the main PVT window.
+2. See the results of the scan and perform additional functions on the following tabs:
+Table 1. Scan result tabs
+Tab Data Functions
+Inventory Analysis See Inventory data. n/a
+Performance Analysis See Performance data. n/a
+Feature Assessment See Feature
+Assessment data.
+n/a
+Supervisory Devices See Inventory data.
+To show or hide columns in the supervisory device details list, click
+Show/Hide Column.
+To filter the list, start typing into the search field under the header of a
+column. To clear the search results filters, click Clear Filters.
+Controllers
+To filter the list, start typing into the search field under the header of a
+column. To clear the search results filters, click Clear Filters.
+Points
+Click Select Supervisory Devices to display the points from specific
+supervisory devices.
+Generating reports
+About this task
+When you open a scan, you can generate a report that contains the scan data in a document format. You can export the report as a
+PDF or Microsoft Word document from the PVT Client, or PDF report only from the PVT cloud dashboard. For more information
+about generating reports from the Cloud Dashboard, refer to Generating reports from the Metasys PVT Cloud Dashboard.
+To generate and save a report of a scan, complete the following steps:
+Page 19 of 33
+Procedure
+1. To open a scan, click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. In the top menu, click Report.
+3. Select the report type from the list.
+The report window opens where you can scroll through the report.
+4. To change the page layout, click the Page Setup icon in the toolbar.
+5. To save the report, click the Export icon in the toolbar, and select PDF or Word.
+6. To print the report, click the Print icon in the toolbar.
+Exporting scan results, a tasking estimate, and a tasking list
+About this task
+When you open a scan, you can export the scan results, a tasking estimate, or a tasking list into a Microsoft Excel file.
+To export the scan data, perform the following steps:
+Procedure
+1. Open a scan. Click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. Click Export and from the list, select Scan Results, Tasking Estimate, or Tasking List.
+3. In the dialog window, change the file name if needed, and click Save.
+On-demand Scan
+About this task
+You can now scan the devices when needed. To complete an on-demand scan, complete the following steps:
+Procedure
+1. Click New Scan.
+2. Select one or more devices, then click Scan Selected.
+Sync Status
+You can enable or disable syncing to the cloud in Automatic scan mode or Interactive mode. The Sync status is set to Yes by default.
+If you select No, scans are not synced to the cloud.
+This option is hidden by default. In order to display this option, set the value of HideSyncSetting=False in the
+JCI.Applications.PVT.exe.config file located in C:\Program Files (x86)\Johnson Controls\Metasys Performance Verification Tool.
+Figure 1. PVT settings
+Note:
+Page 20 of 33
+Click Open Scan > Sync Status
+The following table shows a series of conditions that would prevent a scan from syncing or not:
+Table 1. Sync conditions
+Settings in Sync Status Work hours Project Sync Status Will the project sync?
+Disable * * No
+Enable Yes * No
+Enable * External file No
+Enable No Not external file Yes
+An external file refers to any scan that is not perfomed on the PVT application but imported into the PVT from a .pvt file or
+downloaded from the PVT Dashboard.
+Retrieving Metasys server and engine logs
+In order to retrieve Metasys server and engine logs, you require PVT Autoscan mode. Run PVT as JCI elevated and complete the
+following steps to provide access to the logs.
+To retrieve Metasys.userlogs from the client machine, complete the following steps to provide access to the logs:
+1. Navigate to C:\Users\<Administrator>\JohnsonControls.Metasys\logs, then right-click > Properties.
+2. On the Properties window, click the Security tab.
+3. In the Security tab, click Edit.
+4. In the Group user name field, select Network Service. If Network Service does not appear in the list, click Add, then Search
+Network, and select Network Service.
+5. In the Permissions for Users field, select Full control and click OK.
+6. On the Properties window, click OK and close the window.
+In order to retrieve and upload adsadx .eventx logsfrom from client machine, complete the following steps to provide special
+permissions:
+1. Click Windows+R, the services.msc.
+2. Search for PVT sync services.
+3. Right-click sync services and click Stop.
+4. Right-click services.msc, and click Properties.
+5. On the Properties window, navigate to the Log on tab.
+6. Update the radio button fromThis Account to Local System Account.
+7. Click the Allow service to Interact with desktop checkbox, then click Apply and OK.
+8. Start PVT Sync Service.
+You can configure Metasys server and engine log levels from the Cloud Dashboard, see Configuring PVT Logs Level settings from
+the Cloud Dashboard for a Metasys Site for more information. Metasys server and engine logs are then retrieved in the next
+scheduled scan, provided the option to pull Metasys server and engine logs was selected during site configuration, see Entering site
+configuration and scheduled scan data.
+You can download the report, which included Metasys server and engine log information from the Cloud Dashboard. See
+Generating reports from the Metasys PVT Cloud Dashboard, for more information
+Using PVT in interactive mode in the PVT client
+In PVT interactive mode, you cannot configure automated scans. The interactive mode contains the full functionality of PVT that was
+introduced at version 3.1, including creating scans, generating reports, saving a scan in a PVT file, and viewing and exporting scan
+data.
+Interactive scans are perfomed with a technician license.
+Starting PVT
+1. Double-click the Metasys PVT desktop icon.
+2. If a User Account Control screen appears, click Yes.
+PVT user interface in interactive mode
+The main PVT user interface contains the following options: New Scan, Open Scan and Compare Scans. Use the menu icon with
+three lines in the top left corner of the interface to access these options and also the following options: Delete Scan, Preferences,
+Settings, Help, and About.
+Figure 1. PVT user interface in interactive mode
+Note:
+Page 21 of 33
+Table 1. PVT user interface options
+Option Description
+New Scan Open the New Project interface to create a new project.
+Open Scan Open an existing project from the local database or from a PVT file.
+You can open PVT files from PVT version 3.0 and above.
+Delete Scan Delete an existing project from your local system.
+Compare Scans Compare two projects by performing a fresh scan and compare with another scan to
+identify any changes in site data.
+Preferences Tab Description
+Field Point Modify the point names search criteria for
+better point results.
+Instance Number Modify the instance number search
+criteria for better point results.
+Equipment Type Modify the equipment type names search
+criteria for better point results on
+equipment identification.
+Rule Preferences Modify rule preferences for scheduling,
+setpoints, filters, alarm events, user
+management, thermal waste, fan motor,
+and different modules of variation form
+set points.
+Settings Modify language settings and work hours information. Enable or disable sync status.
+Help View PVT documentation in browser.
+About
+View version and license information for your PVT installation. Check the latest rule
+version synced from the cloud.
+Creating a new site
+Prerequisites: Before you create a new site, ensure that you can access the customer's Metasys BAS or System Configuration Tool
+(SCT) archive.
+1. To create a new site, from the main menu, click New Scan.
+2. Enter the Metasys server information in the IP (or Hostname) of Server, Metasys Server Username, and the Metasys Server
+Password fields.
+3. Click Import to import the site config file. For more information about how to generate a site config file, refer to Creating a site
+from the Metasys PVT Cloud Dashboard.
+4. Enter your site passphrase and click Next.
+5. In the The Customer Information message box, enter the customer’s information and click the right arrow.
+Note:
+Page 22 of 33
+6. Select your Server OS and SQL Server Version, and indicate if you have Metasys UI implemented on your site. You can also
+provide information on your Metasys license. If you are unsure of what information to provide in the Metasys license field,
+hover over the info icon. Click the right arrow.
+7. Select either SCT Archive or Online.
+Online refers to scanning a Metasys system directly by connecting to Metasys Sever or Site Director of a live system.
+SCT Archive refers to scanning an SCT Archive. To scan an SCT Archive, PVT connects to SCT. You must install SCT before you
+proceed with this option. If SCT is installed on the same machine as PVT, set the host name to localhost.
+8. a. If you initiate an Online scan, enter the IP or host name of the server or site director.
+b. If you initiate a scan for an SCT Archive, enter the IP or host name of the computer that SCT is installed on.
+You can specify a different port number to access a site by placing a colon followed by the port number after the
+address. For example: localhost:443. There is no default port selection.
+9. Enter your user name.
+a. For Online scans, enter the Metasys user name.
+b. For SCT Archive scans, enter the SCT user name.
+10. Enter your password and click the right arrow.
+a. For Online scans, enter the Metasys password.
+b. For SCT Archive scans, enter the SCT password.
+The Get Archive List and Archive are only enabled when you select the SCT Archive radio button.
+If you select the SCT Archive option, complete the following steps:
+Click the Get Archive List button to gather a list of existing archive that PVT can scan.
+In the Archive drop-down menu, select the archive you want to scan.
+11. Click the right arrow.
+12. Select the type of scan to perform:
+Inventory: Scans the engine or controller excluding point information. Inventory scan with points scans point
+information as well. The Points tab is only visible when the inventory scan with points is complete.
+Performance: This scan is only available for online sites, and is not available for SCT Archive.
+Feature Assessment: Scans the features of the Metasys System and how the customer uses them.
+13. Click Perform Scan. The PVT presents a list of the supervisory devices in the system. Select the supervisory devices to scan.
+See Table 1 for information on the different types of scans.
+14. Click Scan Selected to begin the scan.
+If you want to stop a scan before it completes, you can select one of the following:
+Don't save: cancel the entire scan and do not create a site.
+Save: save the completed data.
+Editing a site
+Procedure
+1. Click Open Scan from the main menu to view existing sites.
+2. Select a site and open it.
+3. Click Edit. You cannot change the selected branch in edit mode.
+4. From the Edit Site dialog box you can edit your site your site information, customer information and site information in the
+available fields. See Creating a new site for details on the type of fields and their use.
+5. Click Save.
+Deleting a site
+Procedure
+1. Select Delete Scan from the main menu.
+2. Select a site to delete.
+3. Click Delete. You cannot select more than five sites for deletion at a time.
+Generating reports
+About this task
+When you open a scan, you can generate a report that contains the scan data in a document format. You can export the report as a
+PDF or Microsoft Word document from the PVT Client, or PDF report only from the PVT cloud dashboard. For more information
+about generating reports from the Cloud Dashboard, refer to Generating reports from the Metasys PVT Cloud Dashboard.
+Note:
+Note:
+Note:
+Note:
+Page 23 of 33
+To generate and save a report of a scan, complete the following steps:
+Procedure
+1. To open a scan, click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. In the top menu, click Report.
+3. Select the report type from the list.
+The report window opens where you can scroll through the report.
+4. To change the page layout, click the Page Setup icon in the toolbar.
+5. To save the report, click the Export icon in the toolbar, and select PDF or Word.
+6. To print the report, click the Print icon in the toolbar.
+Saving a site as a PVT file
+Procedure
+1. Open a site. Click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. Click Save as PVT in the upper right.
+3. Select a save location and click Save.
+Exporting scan results, a tasking estimate, and a tasking list
+About this task
+When you open a scan, you can export the scan results, a tasking estimate, or a tasking list into a Microsoft Excel file.
+To export the scan data, perform the following steps:
+Procedure
+1. Open a scan. Click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. Click Export and from the list, select Scan Results, Tasking Estimate, or Tasking List.
+3. In the dialog window, change the file name if needed, and click Save.
+Exporting the riser diagram
+About this task
+When you open a scan, you can export a riser diagram of the scanned devices into a Microsoft Visio file.
+This function is available only for inventory and performance scans. You must have Microsoft Visio 2013 or above
+installed for this process to work.
+Procedure
+1. Open a scan. Click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. Click Export Riser in the upper right.
+3. Microsoft Visio opens and the riser diagram is automatically created.
+Updating the scan
+About this task
+You can update the list of supervisory devices in the scan and then restart the scan. For example, you can include the points of
+additional supervisory devices in the scan data.
+To update a scan, complete the following steps:
+Procedure
+1. Click Open Scan in the toolbar or main menu, or click on the card of a recent scan in the main PVT window.
+2. Click Update Scan in the upper right.
+3. Enter your user name and password.
+Note:
+Page 24 of 33
+4. In the supervisory device list, select the check box next to a device to add the device to the scan, or clear the check box next to
+a device to exclude the device from the scan.
+5. Click Scan Selected.
+Type of scans
+The following table explains the different types of scans.
+Table 1. Scan types
+Type of scan Description
+Inventory Identifies an inventory list of all controls hardware, such as supervisory devices and
+controllers, along with several key attributes of those controllers.
+Performance This feature performs the following tasks:
+Identifies opportunities for improvements, which could lead to energy savings.
+Identifies areas of the network that could use some maintenance, such as cleaning up
+unbound references or removing duplicate BACnet® IDs.
+Measures how accurately setpoints are being met and maintained, and identifies
+equipment that frequently deviates from setpoint.
+Identifies areas of security risk, such as dormant accounts and use of the Metasys default
+credentials.
+Feature Assessment Measures how well the Metasys features are being utilized and reports on commonly
+underutilized features, such as Tailored Summaries, Optimal Start, or Demand Limiting/Load
+Rolling (DLLR).
+Inventory data
+The following information is gathered from Metasys during an Inventory scan:
+Table 1. Inventory Analysis tab
+Analysis attributes Description
+Summary Displays information about any critical issues, corrective maintenance, or other
+recommendations.
+Server Information Displays server name, IP address, number of supervisory devices, operating system version, SQL
+server version, Hard Drive free space, Firewall Status, USB Port status, and Server Machine CPU
+and RAM usage..
+Scanned Information Displays the number of servers, supervisory devices, field controllers, objects, controller
+templates and equipment definitions.
+For online scans, server information does not show the count of controller templates,
+equipment definitions, spaces, or equipment.
+Table 2. Supervisory Devices tab
+Supervisory Device attributes Description
+Device Name The name of the supervisory device.
+Device description The description of the supervisory device.
+Extended Label The extended description of the supervisory device.
+Model Name The model name of the supervisory device.
+Firmware The current firmware version of the device.
+If there is a more current critical patch, the device is flagged.
+Integrations Identifies the types of integration trunks configured on the supervisory device.
+Controllers The number of field controllers for each integration type.
+Note:
+Note:
+Page 25 of 33
+Supervisory Device attributes Description
+If the number of controllers for an integration exceeds Metasys
+recommendations the device is flagged. The Metasys recommendations are based on
+total number of controllers per engine or number of controllers supported on a
+particular integration trunk.
+Object Count The total object count on the supervisory device (hardware points and software
+objects).
+If the Object Count exceeds the Metasys recommendation based on the
+model of the device, it is flagged.
+CPU Usage If CPU usage exceeds 60%, the device is flagged.
+Flash Usage If flash usage exceeds 100%, the device is flagged.
+Memory Usage If memory usage exceeds 90%, the device is flagged.
+Samples Lost The number of trend samples that could not be sent successfully to the ADS/X
+repository due to an overfilled network engine buffer.
+Sample Rate Monitors the rate at which trend samples are collected on the network engine.
+Events Lost The number of events that could not be sent to the ADS/X repository.
+Transport Failure Rate A list of communication failures between the device list server and each device. This
+field was introduced at release 5.0.
+Repository The IP address of the reporting server.
+NAE Last Restart (UTC) The timestamp of the last time the network engine restarted.
+NAE Battery Condition If the battery is in fault, the device is flagged.
+Transport Buffer in Use Indicates the percentage full of the engine trend consolidation buffer.
+Time between Buffer Reads Indicates the time, in minutes, between engine trend consolidation buffer readings
+from the Metasys server.
+BACnet ID The BACnet ID of the device.
+BACnet COV Receive Rate Specifies the number of COV messages the engine receives from other supervisory
+devices or field controllers per minute.
+BACnet Broadcast Receive Rate Indicates the number of BACnet broadcast messages the device received in the
+previous minute.
+Tag This column highlights any unique device characteristics, such as UL-Listed Devices.
+Issues Displays a list of issues related to the device.
+Patch Status
+OK—No critical patches are available for this device. The device is up-to-date.
+Critical—A critical patch is available for this device. This device is flagged.
+Available Patches Shows the patch version and synopsis of any critical patches that need to be applied
+to the supervisory device.
+Patch Description Shows the patch description to inform the user of the importance of the patch.
+Patch Options Shows patch implementation options.
+Prerequisite Shows the requirements before patching.
+Latest Available Firmware Cloud Dashboard Scan Results show the latest available firmware for engines.
+Table 3. Controllers tab
+Field Controller attributes Description
+Controller Name The name of the field controller.
+Controller Description The description of the field controller.
+Extended Label The field controller’s extended label.
+Model Name The field controller model.
+Note:
+Note:
+Page 26 of 33
+Field Controller attributes Description
+Firmware Current firmware version of the field controller.
+App Info Controller Configuration Tool (CCT) application type.
+Operational Status Shows if a controller is offline or not at the time of scan.
+Physical Points Physical points (sensor/actuator) mapped to a field controller.
+Mapped Points The number of points mapped to the field controller.
+Equipment Based on the name, description, and extended label of the controller, the tool tries to
+identify the type of equipment that the device controls: VAV or AHU. This field is editable.
+To mass edit, go to Preference > Equipment Details and edit the search criteria for
+identifying equipment.
+Tag This column highlights unique controllers such as third-party devices or legacy
+equipment Network Control Modules.
+Issues Displays a list of issues related to the device.
+BACnet ID The BACnet ID of the device. If duplicates are found, they are flagged during a
+Performance scan.
+Network Address (N2) The unique address used to identify physical devices on an N2 trunk.
+MAC Address The unique address used to identify physical devices on a MS/TP trunk.
+FQR (Fully Qualified Reference) The unique identifier of objects in the Metasys interface.
+Table 4. Points tab
+Field Controller attributes Description
+System Name Field controller and point type details.
+Temperature Temperature sensing element.
+Humidity Humidity sensing element.
+Pressure Pressure sensing element.
+Flow Flow sensing element.
+Meter Meter objects.
+Damper/Valve Damper or valve command point.
+Command Binary command point.
+Alarms Alarm point.
+Status Binary status point.
+Unknown All other point types that do not fit in a category.
+Quantity Total quantity of points in the row.
+Table 5. Server Details
+Server Details attributes Description
+Model Server model.
+ADS shows up for both ADS and ADX models.
+Server Name Name of the server.
+IP Address IP address of the Metasys server that is used to scan the site in PVT.
+Count of Engines Total count of engines both online and offline.
+Metasys Version Metasys version number of the server.
+SQL Version
+For autoscan mode, the SQL version is read from the machine that PVT is installed on.
+For a manual scan, this shows the SQL version that you input during scan creation.
+Server Machine CPU Usage
+This value is read from the machine when the scheduled scan starts.
+Note:
+Page 27 of 33
+Server Details attributes Description
+This value is not available for manual scans or SCT Archive scans.
+Server Machine RAM Usage
+This value is read from the machine when the scheduled scan starts.
+This value is not available for manual scans or SCT Archive scans.
+OS Version
+For autoscan mode, the OS version is read from the machine that PVT is installed on.
+For a manual scan, this shows the OS version that you input during scan creation.
+Hard Drive Free Space Total hard drive space free on the server.
+Firewall Status
+For Autoscan mode, this shows the firewall status of the machine that PVT is installed on.
+This value is not available for manual scans.
+USB Ports Status
+For Autoscan mode, this shows if USB ports are enabled or disabled on the machine that PVT is
+installed on.
+This value is not available for manual scans.
+The points tab only displays AI, AO, BI and BO points of a controller you scan. To view all other point types, click Export >
+Scan to export scan results, and see the Points sheet of the exported Excel file.
+Performance data
+The following information is gathered during a performance scan:
+Table 1. Performance Analysis Tab
+Type of analysis Description
+Performance and Savings
+Scheduling If the Occupancy Command object has a value in its priority array between priorities 1 to 15, the
+device is considered Scheduled. If no values exist in the priority array between priorities 1 to 15, the
+device is considered Unscheduled. If the Occupancy Command object cannot be found based on the
+search criteria the device is categorized as Undetermined. You can configure the search criteria using
+the options under the Preference menu.
+Economizer For Air Handling Units (AHUs): if the Economizer Status object value is True when the Outdoor Air
+Temperature object value is less than the Discharge Air Temperature Set Point object value during a
+trended 24-hour period, then the equipment is categorized as AHUs With Economizer. If the
+Economizer Status object value is not True when the Outdoor Air Temperature object value is less
+than the Discharge Air Temperature Set Point object value during a trended 24-hour period, the
+equipment is categorized as AHUs Without Economizer. If none of the required objects are found
+based on the search criteria or they do not have trends, the equipment rule is categorized as
+Undetermined. You can configure the search criteria using the options under the Preference menu.
+Fan Motors For AHUs: if the Supply Fan Output object always shows a value of 100% for a trended 24-hour
+period, then the equipment is categorized as Fans always running 100% and shows the message
+Note:
+Page 28 of 33
+Type of analysis Description
+<<Point name>> is running on maximum speed. If the Supply Fan Output object is not found
+based on the search criteria the equipment is categorized as Undetermined. You can configure the
+search criteria using the options under the Preference menu.
+AHU Reset Strategy If the Discharge Air Temperature Setpoint or the Duct Static Pressure Setpoint does not change
+within a 24-hour period, then it is assumed that no reset strategy is implemented and the device is
+flagged. If neither point can be found, then the device is marked as Undetermined.
+100% Outdoor Air Handling
+Unit
+For AHUs: if the Mixed Air Damper and Mixed Air Temperature objects are found, or the Outdoor Air
+Damper object value shows variable modulation between 0% and 100%, then the device is
+categorized as AHU Without 100% Outdoor Air. If neither Mixed Air objects are found and the
+Outdoor Air Damper object value shows 2-stage operation (0% or 100%), then the device is
+categorized as AHU With 100% Outdoor Air. If none of the objects identified above are found based
+on the search criteria the device is categorized as Undetermined. You can configure the search
+criteria using the options under the Preference menu.
+Heating or Cooling Waste For AHUs: if the Heating Output object value is greater than 0% when the Outdoor Air Temperature
+object value is above 80°F within a trended 24-hour period, then the equipment produces Heating
+Waste. If the Cooling Output object value is greater than 0% when the Outdoor Air Temperature
+object value is below 60° F within a trended 24-hour period, then the equipment produces Cooling
+Waste. If none of the objects or trends identified above could be found based on the search criteria
+the equipment is considered Undetermined. You can configure the search criteria using the options
+under the Preference menu.
+Maintenance and Reliability
+Dirty Filter For AHUs: if the pressure drop across the filter triggers the differential pressure switch or the
+Differential Pressure Sensor object value shows a pressure drop greater than 0.5 in. W.C., the
+equipment is considered to have a dirty filter. If the pressure drop across the filter does not trigger
+the differential pressure switch and the Differential Pressure Sensor object value shows a pressure
+drop less than 0.5 in. W.C., no notification is generated. If neither of the identified objects that
+represent the filter pressure switch or the filter pressure sensor are found during the performance
+scan, the equipment rule is categorized as Undetermined. You can configure the search criteria using
+the options under the Preference menu.
+Unbound References Identifies the unbound references by supervisory device. To view unbound references in the Power BI
+(PBI) report, navigate to Issues > Performance Issues.
+Duplicated BACnet IDs If more than one controller on the entire network has the same BACnet ID, the controller is included
+in the duplicate BACnet ID list. Controllers with duplicate BACnet IDs may cause communication
+problems when non-Metasys devices are part of the network. To view duplicate BACnet IDs in the
+PBI report, navigate to Issues > Performance Issues.
+Alarm/Events
+Identifies controllers and points with alarms in the Metasys system and groups them based on alarm
+priority.
+Investigate and acknowledge alarms because they could be an indication of equipment issues or
+other underlying root causes that need to be addressed. Alternatively, it could mean that alarm
+thresholds need to be adjusted to produce fewer alarms, so that operators can focus on alarms that
+are true indicators of problems.
+The performance report shows alarms that are not considered urgent.
+Operator Overriding
+Lists objects that are currently in an operator override state. Investigate and release the override if it
+is no longer needed to allow Metasys to automate control of that object.
+Beginning with Metasys 7.0, the Temporary Operator Override feature was added to prevent objects
+from remaining in an override state for a long time.
+Comfort and Health
+Page 29 of 33
+Type of analysis Description
+AHU DA-T Variation from
+Setpoint
+Analyzes the Discharge Air Temperature object value for a trended period of 24 hours, and then
+calculates an average deviation from setpoint for each Air Handling Unit (AHU). If the calculated
+average deviation from setpoint is greater than the user-specified deviation limit, the equipment rule
+generates a notification.
+Absolute value of Discharge Air Temp minus the Discharge Air Temp Setpoint is greater than the
+value set in the preferences.
+AHU-DAP-SP Variation
+from Setpoint
+Analyzes the Duct Static Pressure object value for a trended period of 24 hours, and then calculates
+an average deviation from the setpoint for each Air Handling Unit (AHU). If the calculated average
+deviation from the setpoint is greater than user specified deviation limit, the equipment rule
+generates a notification.
+Absolute value of Discharge Air Pressure minus the Discharge Air Pressure Setpoint is greater than
+the value set in the preferences.
+AHU CO2 Variation from
+Setpoint
+Analyzes the CO2 sensor object value for a trended period of 24 hours, and then calculates an
+average deviation from the setpoint for each Air Handling Unit (AHU). If the calculated average
+deviation from the setpoint is greater than user specified deviation limit, the equipment rule
+generates a notification.
+Average CO2 minus the CO2 setpoint is greater than the value in the preferences.
+Zone Humidity Level
+variation
+Analyzes the humidity object value for a trended period of 24 hours.
+Zone Humidity Level
+variation from setpoint
+Analyzes the Zone Humidity Level object value for a trended period of 24 hours, and then calculates
+an average deviation from the setpoint for each zone. If the calculated average deviation from the
+setpoint is greater than user specified deviation limit, the equipment is flagged.
+You can change the initial values of 30% and 60% in Preferences.
+Security and Standards
+Default Users Identifies if the Metasys Default user and password are being used.
+All Admin Users Lists the users that have administrative privileges.
+Dormant Accounts
+Identifies users that have not logged into Metasys within the last six months.
+Active users have Active status.
+Dormant users show as Yes in the dormant account user report.
+If you perform a scan through ADS/ADX, PVT only shows users that are configured on ADS/ADX and
+their status according to the dormant account user report.
+Page 30 of 33
+Type of analysis Description
+If a scan is done as engine site director, users and associated configurations are shown in PVT.
+Point Categorization Identifies whether all points are categorized the same. As a best practice, categorize points in order
+to set up and receive alarms on important points.
+You can view the results of the rules in the application by reviewing the scan results, and in the PBI report after the scan is
+transferred from the local machine to the PVT cloud repository.
+For details about the Inventory Analysis, Supervisory Devices, Controllers, and Points tabs, see Inventory data.
+Feature Assessment data
+Feature Assessment searches for the use of the following Metasys features:
+Table 1. Feature Assessment Tab
+Feature Assessment Description
+Metasys UI Location-based approach to finding information about the Metasys site.
+Solar Clock Computes Present Value (Night or Day), Sun Position, and Sunrise/Sunset times based on local
+position and local time.
+User Views User navigation view in Metasys.
+Tailored Summaries Allows viewing and modification of large quantities of similar data in a tabular view in Metasys.
+Optimal Start Aids in the reduction of energy costs during a building's transition from unoccupied to occupied.
+You can view and edit this feature in Metasys.
+Demand Limiting/Load Rolling
+(DLLR)
+Helps save money by limiting energy use during times of peak demand. You can view and edit
+this feature in Metasys.
+PVT Sync Service
+The PVT Sync Service installs with PVT and runs in the background to sync your PVT data to the cloud. The service can run in
+Autoscan mode or Interactive mode. The service requires an active internet connection and only performs the synchronization after
+you close PVT. After you launch PVT for the first time, you must enter your Single Sign On (SSO) credentials. Sync options remain
+unavailable until you log on.
+After logging on, a new column, Sync Status, appears in Open Project.
+If a project is not synced, the status reads Ready to Sync.
+If a project is synced, the status reads Synced.
+In the Recent Project list, the cloud icon in each synced project turns green.
+If you have set working hours, all projects with Ready to Sync are synced outside of these hours. To manually sync projects, click
+Sync now in the Open Project dialog box. Click Sync now to override the set working hours and sync all projects with Ready to Sync
+status.
+If all projects are synced, the Sync now button is disabled.
+Only the data from the last 7 days can display.
+For autoscan mode, the sync is triggered by the scheduled scan time. When the scan completes, the scan is sent to the cloud
+immediately. The cloud may take some time to process the scan so it does not show up immediately.
+Bus diagnostics data points
+The following data points related to bus diagnostics are captured by PVT and display in the PVT dashboard, not the PVT client:
+Table 1. Bus diagnostics data points
+Data point Category
+Bus health index MS/TP Trunk diagnostic tab
+Bus performance Index
+Execution time
+Framing Errors
+Note:
+Note:
+Note:
+Note:
+Page 31 of 33
+Data point Category
+Overrun Errors
+Header CRC Errors
+Data CRC Errors
+Reply Too Slow Datalink Errors
+Reply Too Slow Application Errors
+Internal Errors
+Buffer Overflows
+Lost Token
+Retries
+Max Output Queue Used
+Local Abort Tx BACnet protocol diagnostic tab
+Seg Retries Tx
+Reg Retries Tx
+Tx Record Count
+Rcv Record Count
+Record Count
+Tx Messages Discarded
+Rcv Messages Discarded
+Allocate Record Count
+Pending Queue Count
+Peak Pending Queue Count
+Unknown Queue Count
+Peak Unknown Queue Count
+Rcv Message Rate
+Transmits Per Minute
+Transactions Timeouts
+Net Messages Tx
+Net Messages Rcv
+Net Unknown Routes
+Net Rejects Rcv
+Net Routes Busy
+Net Unknown Msg Rcv
+Net Routed Messages
+Troubleshooting PVT
+The following table includes general troubleshooting information.
+Table 1. General troubleshooting
+Error message or scenario
+An error occurred while using PVT.
+Page 32 of 33
+Error message or scenario
+When generating a Riser diagram, the following error occurs: An error occurred in the creation of the Visio document.
+When you log on to the server machine to complete changes in Site Configuration which was originally completed by another user, you
+error: Access to path C:\ProgramData\Johnson Controls\Metasys Performance Verification Tool\ServerCreds.bin
+not possible to make site configuration changes.
+The PVT installation fails and the following error appears in the pvt-error.log file: Error 1920. Service 'PVT Sync Service' (PVT
+failed to start. Verify that you have sufficient privileges to start system services.
+Scan does not start, and the following error appears in the pvt-WindowsService-Error.log file:
+|ERROR|PvtSyncWinSvc|System.Security.Authentication.AuthenticationException: Invalid
+Credentials|System.Security.Authentication.AuthenticationException: Invalid Credentials at
+JohnsonControls.Tools.Metasys.ScanEngine.Providers.Authentication.MmdaAuthenticationProvider.Authenticat
+credentials, Boolean isSctArchive)at
+JohnsonControls.Tools.Metasys.ScanEngine.Providers.Authentication.OnlineAuthenticationProvider.Authentic
+JohnsonControls.Tools.Metasys.ScanEngine.Service.AuthenticationService.Authenticate()at
+JohnsonControls.Tools.Metasys.ScanEngine.Service.PvtScanService.<AuthenticateAsync>b__21_0()at
+System.Threading.Tasks.Task`1.InnerInvoke()at System.Threading.Tasks.Task.Execute()
+An error occurs while you install PVT.
+You receive the following error when you install PVT: In autoscan mode, PVT requires an internet connection for config
+setup.
+PVT installation fails.
+Product warranty
+This product is covered by a limited warranty, details of which can be found at www.johnsoncontrols.com/buildingswarranty.
+Software terms
+Use of the software that is in (or constitutes) this product, or access to the cloud, or hosted services applicable to this product, if any,
+is subject to applicable end-user license, open-source software information, and other terms set forth at
+www.johnsoncontrols.com/techterms. Your use of this product constitutes an agreement to such terms.
+Contact information
+Page 33 of 33
+Contact your local branch office: www.johnsoncontrols.com/locations
+Contact Johnson Controls: www.johnsoncontrols.com/contact-us
+Contact PVT support: mailto:pvt-support@jci.com
   </body>
 </html>
